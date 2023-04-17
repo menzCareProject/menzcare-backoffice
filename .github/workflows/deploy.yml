@@ -12,9 +12,9 @@ env:
 
 jobs:
   build:
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
   
-  steps:
+    steps:
     - name: Checkout
       uses: actions/checkout@v2
       
@@ -25,15 +25,15 @@ jobs:
     
     - name: Grant execute permission for gradlew
       run: chmod +x ./gradlew
-      shell: zsh
+      shell: bash
     
     - name: Build with Gradle
       run: ./gradlew build
-      shell: zsh
+      shell: bash
     
     - name: Make zip file
       run: zip -r ./$GITHUB_SHA .
-      shell: zsh
+      shell: bash
       
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -46,7 +46,7 @@ jobs:
       run: aws s3 cp --region ap-northease-2 ./$GITHUB.SHA.zip s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip
       
     - name: Code Deploy
-      reun: |
+      run: |
         aws deploy create-deployment \
         --deployment-config-name CodeDeployDefault.AllAtOnce \
         --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
