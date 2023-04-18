@@ -10,11 +10,12 @@ env:
   CODE_DEPLOY_APPLICATION_NAME: CODE-DEPLOY-menzCare
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: CODE-DEPLOY-GROUP
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build:
-    permissions:
-      id-token: 'write'
-      contents: 'read'
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
