@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class BackOfficeMainController {
     private final BackOfficeMainService backOfficeMainService;
 
+    
     @GetMapping("/test")
     public String controllerTest() {
         return backOfficeMainService.testService();
